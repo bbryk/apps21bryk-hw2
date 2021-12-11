@@ -325,6 +325,7 @@ public final class ImmutableLinkedList implements ImmutableList {
         Node current = head;
         if (current.getNext()==null){
             return new ImmutableLinkedList();
+
         }
         int size = this.size();
         int i = 1;
