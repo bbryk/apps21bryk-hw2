@@ -1,21 +1,12 @@
 package ua.edu.ucu.collections.immutable;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class ImmutableArrayListTest extends TestCase {
+class ImmutableArrayListTest {
 
-    public void testGet(){
-        Object[][] inputArr = {{"a"}, {"b"}, {"c"}};
-        ImmutableArrayList arr = new ImmutableArrayList(inputArr);
-
-        assertArrayEquals(arr.toArray(), inputArr);
-        assertEquals(inputArr[1], arr.get(1));
-        Object []el = (Object[]) arr.get(1);
-        el[0] = "c";
-        inputArr = new Object[][]{{"a"}, {"b"}, {"c"}};
-        assertArrayEquals(arr.toArray(), inputArr);
+    @Test
+    void add() {
     }
-
 }
