@@ -5,7 +5,7 @@ import ua.edu.ucu.collections.immutable.ImmutableLinkedList;
 public class Queue {
     public ImmutableLinkedList ll;
 
-    public Queue(){
+    public Queue() {
         this.ll = new ImmutableLinkedList();
 
     }
@@ -23,9 +23,6 @@ public class Queue {
     public void enqueue(Object e) {
         this.ll = ll.add(e);
     }
-
-
-
 
 
 }

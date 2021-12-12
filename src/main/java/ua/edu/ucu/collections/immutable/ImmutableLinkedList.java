@@ -69,16 +69,23 @@ public final class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public ImmutableLinkedList add(int index, Object e) {
+        if ((index > this.size()) | (index<0)){
+            throw new IllegalArgumentException();
+        }
+        if (index ==0 | head==null){
+            return this.addFirst(e);
+        }
+
         Node newHead = new Node(this.head.getValue());
 
 
         Node newCurrent = newHead;
         Node current = head;
 
-        for (int i =0; i < index-1; i++){
+        for (int i = 0; i < index - 1; i++) {
             current = current.getNext();
             newCurrent.setNext(new Node(current.getValue()));
-            newCurrent =newCurrent.getNext();
+            newCurrent = newCurrent.getNext();
         }
 
         Node newNode = new Node(e);
@@ -86,10 +93,10 @@ public final class ImmutableLinkedList implements ImmutableList {
         newCurrent = newNode;
 
 
-        while(current.getNext() != null){
+        while (current.getNext() != null) {
             current = current.getNext();
             newCurrent.setNext(new Node(current.getValue()));
-            newCurrent =newCurrent.getNext();
+            newCurrent = newCurrent.getNext();
         }
 
         return new ImmutableLinkedList(newHead);
@@ -97,20 +104,25 @@ public final class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public ImmutableLinkedList addAll(Object[] c) {
-        Node newHead = new Node(this.head.getValue());
-        Node newCurrent = newHead;
-        Node current = head;
-        while(current.getNext()!=null){
-            current = current.getNext();
-            newCurrent.setNext(new Node(current.getValue()));
-            newCurrent =newCurrent.getNext();
-        }
+        Node newHead;
+        if(head != null) {
+            newHead = new Node(this.head.getValue());
+            Node newCurrent = newHead;
+            Node current = head;
+            while (current.getNext() != null) {
+                current = current.getNext();
+                newCurrent.setNext(new Node(current.getValue()));
+                newCurrent = newCurrent.getNext();
+            }
 
-        for (int i = 0; i<c.length; i++){
-            Node newNode = new Node(c[i]);
-            newCurrent.setNext(newNode);
-            newCurrent = newCurrent.getNext();
+            for (int i = 0; i < c.length; i++) {
+                Node newNode = new Node(c[i]);
+                newCurrent.setNext(newNode);
+                newCurrent = newCurrent.getNext();
 
+            }
+        }else{
+            return new ImmutableLinkedList(c);
         }
 
 
@@ -121,6 +133,11 @@ public final class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public ImmutableLinkedList addAll(int index, Object[] c) {
+        if ((index > this.size()) | (index<0)){
+            throw new IllegalArgumentException();
+        }else if(head==null){
+            return new ImmutableLinkedList(c);
+        }
         Node newHead = new Node(this.head.getValue());
         Node newCurrent = newHead;
         Node current = head;
@@ -157,6 +174,9 @@ public final class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public ImmutableLinkedList remove(int index) {
+        if ((index > this.size()) | (index<0)| head == null){
+            throw new IllegalArgumentException();
+        }
         Node newHead = new Node(this.head.getValue());
         Node newCurrent = newHead;
         Node current = head;
@@ -179,6 +199,11 @@ public final class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public ImmutableLinkedList set(int index, Object e) {
+        if ((index > this.size()) | (index<0)){
+            throw new IllegalArgumentException();
+        }else if(head==null){
+            return new ImmutableLinkedList(new Node(e));
+        }
         Node newHead = new Node(this.head.getValue());
         Node newCurrent = newHead;
         Node current = head;
@@ -207,7 +232,7 @@ public final class ImmutableLinkedList implements ImmutableList {
         Node current = head;
         int i = 0;
 
-        while(current.getNext() != null){
+        while(current != null){
             if (current.getValue().equals(e)){
                 return i;
             }
@@ -262,22 +287,32 @@ public final class ImmutableLinkedList implements ImmutableList {
     }
 
     public ImmutableLinkedList addFirst(Object e) {
-        Node newNode = new Node(e);
-        Node newHead = newNode;
-        Node newCurrent = newHead;
-        Node current = head;
-        newHead.setNext(new Node(current.getValue()));
-        newCurrent = newCurrent.getNext();
+        Node newHead;
+        if (head != null) {
+            Node newNode = new Node(e);
+            newHead = newNode;
+            Node newCurrent = newHead;
+            Node current = head;
+            newHead.setNext(new Node(current.getValue()));
+            newCurrent = newCurrent.getNext();
 
-        while(current.getNext() != null){
-            current = current.getNext();
-            newCurrent.setNext(new Node(current.getValue()));
-            newCurrent =newCurrent.getNext();
+            while(current.getNext() != null){
+                current = current.getNext();
+                newCurrent.setNext(new Node(current.getValue()));
+                newCurrent =newCurrent.getNext();
+            }
+        }else{
+            newHead = new Node(e);
         }
+
+
         return new ImmutableLinkedList(newHead);
     }
 
     public ImmutableLinkedList addLast(Object e) {
+        if (head == null){
+            return new ImmutableLinkedList(new Node(e));
+        }
         return this.add(this.size(),e);
 
     }
@@ -303,6 +338,10 @@ public final class ImmutableLinkedList implements ImmutableList {
     }
 
     public ImmutableLinkedList removeFirst() {
+        if (head == null){
+            throw new IllegalArgumentException();
+
+        }
 
         Node newHead = new Node(this.head.getNext().getValue());
         Node newCurrent = newHead;
@@ -319,6 +358,10 @@ public final class ImmutableLinkedList implements ImmutableList {
     }
 
     public ImmutableLinkedList removeLast() {
+        if (head == null){
+            throw new IllegalArgumentException();
+
+        }
 
         Node newHead = new Node(this.head.getValue());
         Node newCurrent = newHead;

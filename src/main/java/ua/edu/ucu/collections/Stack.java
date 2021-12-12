@@ -4,9 +4,11 @@ import ua.edu.ucu.collections.immutable.ImmutableLinkedList;
 
 public class Stack {
     public ImmutableLinkedList ll;
-    public Stack(){
+
+    public Stack() {
         this.ll = new ImmutableLinkedList();
     }
+
     public void push(Object e) {
         this.ll = ll.add(e);
 

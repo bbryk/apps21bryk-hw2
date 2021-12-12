@@ -29,20 +29,21 @@ public final class ImmutableArrayList implements ImmutableList {
         this.actualSize = 0;
     }
 
-    public Object[] resize(int addSize){
+    public Object[] resize(int addSize) {
         Object[] newElements = new Object[this.capacity + addSize];
-        for (int i =0; i <this.actualSize; i++){
+        for (int i = 0; i < this.actualSize; i++) {
             newElements[i] = elements[i];
         }
         return newElements;
     }
-    public static Object[] move(int index, Object[] arr, int addSize){
-        Object [] newElements = new  Object [arr.length + addSize];
-        for (int i =0; i < index; i++){
-            newElements[i]= arr[i];
+
+    public static Object[] move(int index, Object[] arr, int addSize) {
+        Object[] newElements = new Object[arr.length + addSize];
+        for (int i = 0; i < index; i++) {
+            newElements[i] = arr[i];
         }
-        for (int i=index;i<arr.length;i++){
-            newElements[i+addSize] = arr[i];
+        for (int i = index; i < arr.length; i++) {
+            newElements[i + addSize] = arr[i];
         }
         return newElements;
     }
@@ -58,7 +59,7 @@ public final class ImmutableArrayList implements ImmutableList {
     public ImmutableArrayList add(int index, Object e) {
         // 1 2 3 4 5   9 on index 2
         // 1 2 9 3 4 5
-        Object[] newElements = move(index,this.elements,1);
+        Object[] newElements = move(index, this.elements, 1);
         newElements[index] = e;
 
 
@@ -68,8 +69,8 @@ public final class ImmutableArrayList implements ImmutableList {
     @Override
     public ImmutableArrayList addAll(Object[] c) {
         Object[] newElements = this.resize(c.length);
-        for (int i = 0; i <c.length; i++){
-            newElements[this.capacity+i] = c[i];
+        for (int i = 0; i < c.length; i++) {
+            newElements[this.capacity + i] = c[i];
 
         }
         return new ImmutableArrayList(newElements);
@@ -78,9 +79,9 @@ public final class ImmutableArrayList implements ImmutableList {
 
     @Override
     public ImmutableArrayList addAll(int index, Object[] c) {
-        Object[] newElements = move(index,this.elements,c.length);
-        for (int i = 0; i <c.length; i++){
-            newElements[index+i] = c[i];
+        Object[] newElements = move(index, this.elements, c.length);
+        for (int i = 0; i < c.length; i++) {
+            newElements[index + i] = c[i];
 
         }
         return new ImmutableArrayList(newElements);
@@ -94,13 +95,13 @@ public final class ImmutableArrayList implements ImmutableList {
 
     @Override
     public ImmutableArrayList remove(int index) {
-        Object[] newElements = new Object[this.capacity-1];
-        for (int i = 0;i<index; i++){
+        Object[] newElements = new Object[this.capacity - 1];
+        for (int i = 0; i < index; i++) {
             newElements[i] = this.elements[i];
 
         }
-        for (int i = index; i<this.capacity-1;i++){
-            newElements[i] = this.elements[i+1];
+        for (int i = index; i < this.capacity - 1; i++) {
+            newElements[i] = this.elements[i + 1];
         }
         return new ImmutableArrayList(newElements);
     }
@@ -114,8 +115,8 @@ public final class ImmutableArrayList implements ImmutableList {
 
     @Override
     public int indexOf(Object e) {
-        for(int i=0; i<this.capacity;i++){
-            if (this.elements[i].equals(e)){
+        for (int i = 0; i < this.capacity; i++) {
+            if (this.elements[i].equals(e)) {
                 return i;
             }
         }
