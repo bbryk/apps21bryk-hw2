@@ -1,39 +1,35 @@
 package ua.edu.ucu.collections.immutable;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import static org.junit.jupiter.api.Assertions.*;
 
-class ImmutableLinkedListTest {
+public class ImmutableLinkedListTest {
     private ImmutableLinkedList ll;
     private ImmutableLinkedList emptyLl;
 
-    @BeforeEach
-    void setUp() {
-        Node node1 = new Node(1);
-        Node node2 = new Node(2);
-        Node node3 = new Node(3);
-        node2.setNext(node3);
-        node1.setNext(node2);
-        ImmutableLinkedList ll = new ImmutableLinkedList(node1);
-        this.ll = ll;
+
+
+    @Before
+    public  void setUp(){
         this.emptyLl = new ImmutableLinkedList();
-
+        this.ll = new ImmutableLinkedList(new Object[]{1,2,3});
     }
 
-    @AfterEach
-    void tearDown() {
-    }
 
     @Test
-    void print() {
+    public void print() {
 
     }
 
     @Test
-    void add() {
+    public void add() {
+        this.emptyLl = new ImmutableLinkedList();
+        this.ll = new ImmutableLinkedList(new Object[]{1,2,3});
+
         ImmutableLinkedList ll1 = this.ll.add(4);
         Object[] expectedArr = new Object[]{1, 2, 3, 4};
         assertArrayEquals(expectedArr, ll1.toArray());
@@ -46,7 +42,9 @@ class ImmutableLinkedListTest {
     }
 
     @Test
-    void testAdd() {
+    public void testAdd() {
+        this.emptyLl = new ImmutableLinkedList();
+        this.ll = new ImmutableLinkedList(new Object[]{1,2,3});
         ImmutableLinkedList ll1 = this.ll.add(2, 50);
 
         Object[] expectedArr = new Object[]{1, 2, 50, 3};
@@ -62,7 +60,10 @@ class ImmutableLinkedListTest {
     }
 
     @Test
-    void addAll() {
+    public void addAll() {
+        this.emptyLl = new ImmutableLinkedList();
+        this.ll = new ImmutableLinkedList(new Object[]{1,2,3});
+
         Object[] toAdd = new Object[]{5, 5};
 
         ImmutableLinkedList ll1 = this.ll.addAll(toAdd);
@@ -76,7 +77,10 @@ class ImmutableLinkedListTest {
     }
 
     @Test
-    void testAddAll() {
+    public void testAddAll() {
+        this.emptyLl = new ImmutableLinkedList();
+        this.ll = new ImmutableLinkedList(new Object[]{1,2,3});
+
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             this.emptyLl.add(2, new Object[]{1, 2, 3});
         });
@@ -88,13 +92,19 @@ class ImmutableLinkedListTest {
     }
 
     @Test
-    void get() {
+    public void get() {
+        this.emptyLl = new ImmutableLinkedList();
+        this.ll = new ImmutableLinkedList(new Object[]{1,2,3});
+
         Object expected = 3;
         assertEquals(expected, this.ll.get(2));
     }
 
     @Test
-    void remove() {
+    public void remove() {
+        this.emptyLl = new ImmutableLinkedList();
+        this.ll = new ImmutableLinkedList(new Object[]{1,2,3});
+
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             this.emptyLl.remove(5);
         });
@@ -104,7 +114,10 @@ class ImmutableLinkedListTest {
     }
 
     @Test
-    void set() {
+    public void set() {
+        this.emptyLl = new ImmutableLinkedList();
+        this.ll = new ImmutableLinkedList(new Object[]{1,2,3});
+
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             this.emptyLl.set(5, 5);
         });
@@ -119,7 +132,10 @@ class ImmutableLinkedListTest {
     }
 
     @Test
-    void indexOf() {
+    public void indexOf() {
+        this.emptyLl = new ImmutableLinkedList();
+        this.ll = new ImmutableLinkedList(new Object[]{1,2,3});
+
         int expected = 2;
         assertEquals(expected, this.ll.indexOf(3));
         expected = 0;
@@ -129,7 +145,10 @@ class ImmutableLinkedListTest {
     }
 
     @Test
-    void size() {
+    public void size() {
+        this.emptyLl = new ImmutableLinkedList();
+        this.ll = new ImmutableLinkedList(new Object[]{1,2,3});
+
         int expected = 0;
         assertEquals(expected, this.emptyLl.size());
         expected = 3;
@@ -137,24 +156,35 @@ class ImmutableLinkedListTest {
     }
 
     @Test
-    void clear() {
+    public void clear() {
+        this.emptyLl = new ImmutableLinkedList();
+        this.ll = new ImmutableLinkedList(new Object[]{1,2,3});
+
         assertArrayEquals(this.emptyLl.toArray(), this.ll.clear().toArray());
     }
 
     @Test
-    void isEmpty() {
+    public void isEmpty() {
+        this.emptyLl = new ImmutableLinkedList();
+        this.ll = new ImmutableLinkedList(new Object[]{1,2,3});
 
         assertTrue(emptyLl.isEmpty());
     }
 
     @Test
-    void toArray() {
+    public void toArray() {
+        this.emptyLl = new ImmutableLinkedList();
+        this.ll = new ImmutableLinkedList(new Object[]{1,2,3});
+
         Object[] arr = new Object[]{1, 2, 3};
         assertArrayEquals(arr, this.ll.toArray());
     }
 
     @Test
-    void addFirst() {
+    public void addFirst() {
+        this.emptyLl = new ImmutableLinkedList();
+        this.ll = new ImmutableLinkedList(new Object[]{1,2,3});
+
         ImmutableLinkedList ll1 = this.emptyLl.addFirst(5);
         Object[] expected = new Object[]{5};
         assertArrayEquals(expected, ll1.toArray());
@@ -166,7 +196,9 @@ class ImmutableLinkedListTest {
     }
 
     @Test
-    void addLast() {
+    public void addLast() {this.emptyLl = new ImmutableLinkedList();
+        this.ll = new ImmutableLinkedList(new Object[]{1,2,3});
+
         ImmutableLinkedList ll1 = this.emptyLl.addLast(5);
         Object[] expected = new Object[]{5};
         assertArrayEquals(expected, ll1.toArray());
@@ -179,33 +211,46 @@ class ImmutableLinkedListTest {
     }
 
     @Test
-    void getHead() {
+    public void getHead() {this.emptyLl = new ImmutableLinkedList();
+        this.ll = new ImmutableLinkedList(new Object[]{1,2,3});
+
         Node expected = new Node(1);
         assertEquals(expected.getValue(), this.ll.getHead().getValue());
 
     }
 
     @Test
-    void getTail() {
+    public void getTail() {
+        this.emptyLl = new ImmutableLinkedList();
+        this.ll = new ImmutableLinkedList(new Object[]{1,2,3});
         Node expected = new Node(3);
         assertEquals(expected.getValue(), this.ll.getTail().getValue());
     }
 
     @Test
-    void getFirst() {
+    public void getFirst() {
+        this.emptyLl = new ImmutableLinkedList();
+        this.ll = new ImmutableLinkedList(new Object[]{1,2,3});
+
         int expected = 1;
         assertEquals(expected, this.ll.getFirst());
 
     }
 
     @Test
-    void getLast() {
+    public void getLast() {
+        this.emptyLl = new ImmutableLinkedList();
+        this.ll = new ImmutableLinkedList(new Object[]{1,2,3});
+
         int expected = 3;
         assertEquals(expected, this.ll.getLast());
     }
 
     @Test
-    void removeFirst() {
+    public void removeFirst() {
+        this.emptyLl = new ImmutableLinkedList();
+        this.ll = new ImmutableLinkedList(new Object[]{1,2,3});
+
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             this.emptyLl.removeFirst();
         });
@@ -215,7 +260,10 @@ class ImmutableLinkedListTest {
     }
 
     @Test
-    void removeLast() {
+    public void removeLast() {
+        this.emptyLl = new ImmutableLinkedList();
+        this.ll = new ImmutableLinkedList(new Object[]{1,2,3});
+
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             this.emptyLl.removeLast();
         });
