@@ -25,24 +25,6 @@ public final class ImmutableLinkedList implements ImmutableList {
     }
 
 
-    public void print() {
-        Node current = this.head;
-        int i = 0;
-
-        while (current.getNext() != null) {
-
-            System.out.println("Node number " + i + ":" + current.getValue());
-
-            current = current.getNext();
-
-            i++;
-        }
-        System.out.println("Node number " + i + ":" + current.getValue());
-        System.out.println("\n\n");
-
-
-    }
-
     @Override
     public ImmutableLinkedList add(Object e) {
         Node newHead;

@@ -20,10 +20,7 @@ public class ImmutableLinkedListTest {
     }
 
 
-    @Test
-    public void print() {
 
-    }
 
     @Test
     public void add() {
