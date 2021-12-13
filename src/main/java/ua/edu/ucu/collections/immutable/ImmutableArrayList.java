@@ -7,15 +7,7 @@ public final class ImmutableArrayList implements ImmutableList {
     private int capacity;
     private int actualSize;
 
-    @Override
-    public String toString() {
-        return "ImmutableArrayList{"
 
-                + "elements=" + Arrays.toString(elements)
-                + ", capacity=" + capacity
-                + ", actualSize=" + actualSize
-                +'}';
-    }
 
     public ImmutableArrayList() {
         this.elements = new Object[]{};
@@ -29,6 +21,15 @@ public final class ImmutableArrayList implements ImmutableList {
         this.actualSize = elements.length;
     }
 
+    @Override
+    public String toString() {
+        return "ImmutableArrayList{"
+
+                + "elements=" + Arrays.toString(elements)
+                + ", capacity=" + capacity
+                + ", actualSize=" + actualSize
+                +'}';
+    }
 
     public Object[] resize(int addSize) {
         Object[] newElements = new Object[this.capacity + addSize];
