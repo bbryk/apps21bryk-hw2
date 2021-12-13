@@ -135,7 +135,7 @@ public final class ImmutableArrayList implements ImmutableList {
 
     @Override
     public boolean isEmpty() {
-        return this.capacity != 0;
+        return this.capacity == 0;
     }
 
     @Override
