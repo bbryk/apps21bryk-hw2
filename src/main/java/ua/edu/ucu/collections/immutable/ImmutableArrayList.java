@@ -1,7 +1,6 @@
 package ua.edu.ucu.collections.immutable;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 public final class ImmutableArrayList implements ImmutableList {
     private Object[] elements;
@@ -10,11 +9,18 @@ public final class ImmutableArrayList implements ImmutableList {
 
     @Override
     public String toString() {
-        return "ImmutableArrayList{" +
-                "elements=" + Arrays.toString(elements) +
-                ", capacity=" + capacity +
-                ", actualSize=" + actualSize +
-                '}';
+        return "ImmutableArrayList{"
+
+                + "elements=" + Arrays.toString(elements)
+                + ", capacity=" + capacity
+                + ", actualSize=" + actualSize
+                +'}';
+    }
+
+    public ImmutableArrayList() {
+        this.elements = new Object[]{};
+        this.capacity = 0;
+        this.actualSize = 0;
     }
 
     public ImmutableArrayList(Object[] elements) {
@@ -23,11 +29,6 @@ public final class ImmutableArrayList implements ImmutableList {
         this.actualSize = elements.length;
     }
 
-    public ImmutableArrayList() {
-        this.elements = new Object[]{};
-        this.capacity = 0;
-        this.actualSize = 0;
-    }
 
     public Object[] resize(int addSize) {
         Object[] newElements = new Object[this.capacity + addSize];

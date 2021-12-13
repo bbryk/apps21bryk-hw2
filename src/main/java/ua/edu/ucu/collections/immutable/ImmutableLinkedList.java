@@ -1,7 +1,5 @@
 package ua.edu.ucu.collections.immutable;
 
-import java.util.Arrays;
-
 public final class ImmutableLinkedList implements ImmutableList {
     private Node head;
 
